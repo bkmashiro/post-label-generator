@@ -18,14 +18,15 @@ const props = defineProps<Props>()
 </script>
 
 <template>
-  <div class="w-full max-w-4xl min-h-[300px] border border-gray-300 p-5 bg-white mx-auto my-5 relative">
+  <div class="w-full max-w-4xl min-h-[400px] border border-gray-300 p-5 bg-white mx-auto my-5 relative">
     <!-- Return Address -->
     <div class="absolute top-0 left-0 w-1/3 scale-70">
       <div class="space-y-2">
         <div class="font-bold">
           <ruby class="text-sm">
             {{ props.returnAddress.name }}
-            <rt class="text-xs text-gray-600">{{ props.returnAddress.nameRuby }}</rt>
+            <rt v-if="props.returnAddress.nameRuby"
+                class="text-xs text-gray-600">{{ props.returnAddress.nameRuby }}</rt>
           </ruby>
         </div>
         <div class="space-y-1">
@@ -33,7 +34,8 @@ const props = defineProps<Props>()
                :key="index">
             <ruby class="text-sm">
               {{ line }}
-              <rt class="text-xs text-gray-600">{{ props.returnAddress.addressRuby[index] }}</rt>
+              <rt v-if="props.returnAddress.addressRuby[index]?.trim()"
+                  class="text-xs text-gray-600">{{ props.returnAddress.addressRuby[index] }}</rt>
             </ruby>
           </div>
         </div>
@@ -46,7 +48,8 @@ const props = defineProps<Props>()
         <div class="font-bold">
           <ruby class="text-base">
             {{ props.recipientAddress.name }}
-            <rt class="text-xs text-gray-600">{{ props.recipientAddress.nameRuby }}</rt>
+            <rt v-if="props.recipientAddress.nameRuby"
+                class="text-xs text-gray-600">{{ props.recipientAddress.nameRuby }}</rt>
           </ruby>
         </div>
         <div class="space-y-1">
@@ -54,7 +57,8 @@ const props = defineProps<Props>()
                :key="index">
             <ruby class="text-base">
               {{ line }}
-              <rt class="text-xs text-gray-600">{{ props.recipientAddress.addressRuby[index] }}</rt>
+              <rt v-if="props.recipientAddress.addressRuby[index]?.trim()"
+                  class="text-xs text-gray-600">{{ props.recipientAddress.addressRuby[index] }}</rt>
             </ruby>
           </div>
         </div>
